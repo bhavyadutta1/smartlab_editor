@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+header, footer {
+  background-color: #36b9cc;
+  color: #ffffff;
+}
+
+header h1, footer p {
+  margin: 0;
+}
+
+.logo img {
+  max-width: 300px;
+}
+
+.container {
+  max-width: 960px;
+}
+
+.btn-primary {
+  margin-top: 20px;
+}

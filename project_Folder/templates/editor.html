@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Whiteboard Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Whiteboard Editor</h1>
+    
+    <div class="editor">
+        <!-- Content input form -->
+        <textarea id="content" rows="10" cols="50" placeholder="Enter content here..."></textarea>
+        
+        <!-- Background color picker -->
+        <input type="color" id="bgColorPicker" value="#ffffff">
+        
+        <!-- Buttons for adding content -->
+        <button onclick="addParagraph()">Add Paragraph</button>
+        <button onclick="addText()">Add Text</button>
+        <button onclick="addImage()">Add Image</button>
+        <button onclick="addHeading()">Add Heading</button>
+        
+        <!-- Live preview -->
+        <div class="preview" id="preview"></div>
+    </div>
+
+    <script>
+        // JavaScript functions to handle content addition and live preview
+        // You can add your own logic here
+        // For simplicity, this example appends content to the live preview div
+
+        function addParagraph() {
+            const content = document.getElementById('content').value;
+            const bgColor = document.getElementById('bgColorPicker').value;
+            const paragraph = `<p style="background-color:${bgColor};">${content}</p>`;
+            document.getElementById('preview').innerHTML += paragraph;
+        }
+
+        function addText() {
+            const content = document.getElementById('content').value;
+            const bgColor = document.getElementById('bgColorPicker').value;
+            const text = `<span style="background-color:${bgColor};">${content}</span>`;
+            document.getElementById('preview').innerHTML += text;
+        }
+
+        function addImage() {
+            const content = document.getElementById('content').value;
+            const image = `<img src="${content}" alt="Image" />`;
+            document.getElementById('preview').innerHTML += image;
+        }
+
+        function addHeading() {
+            const content = document.getElementById('content').value;
+            const bgColor = document.getElementById('bgColorPicker').value;
+            const heading = `<h2 style="background-color:${bgColor};">${content}</h2>`;
+            document.getElementById('preview').innerHTML += heading;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Whiteboard Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+<body>
+    <h1>Whiteboard Editor</h1>
+
+    <div class="editor">
+        <!-- Content input form -->
+        <textarea id="content" rows="10" cols="50" placeholder="Enter content here..."></textarea>
+        
+        <!-- Background color picker -->
+        <input type="color" id="bgColorPicker" value="#ffffff">
+        
+        <!-- Buttons for adding content -->
+        <button onclick="addParagraph()">Add Paragraph</button>
+        <button onclick="addText()">Add Text</button>
+        <button onclick="addImage()">Add Image</button>
+        <button onclick="addHeading()">Add Heading</button>
+
+        <!-- Buttons for navigation -->
+        <div class="navigation">
+            <button id="previous-button" onclick="previousPage()">Previous</button>
+            <button id="next-button" onclick="nextPage()">Next</button>
+        </div>
+
+        <!-- Live preview -->
+        <div class="preview" id="preview"></div>
+
+        <!-- Generate HTML button -->
+        <button id="generate-html-button" onclick="generateHTML()">Generate HTML</button>
+    </div>
+
+    <script>
+        // JavaScript functions to handle content addition and live preview
+        // You can add your own logic here
+        // For simplicity, this example appends content to the live preview div
+
+        function addParagraph() {
+            const content = document.getElementById('content').value;
+            const bgColor = document.getElementById('bgColorPicker').value;
+            const paragraph = `<p style="background-color:${bgColor};">${content}</p>`;
+            document.getElementById('preview').innerHTML += paragraph;
+        }
+
+        function addText() {
+            const content = document.getElementById('content').value;
+            const bgColor = document.getElementById('bgColorPicker').value;
+            const text = `<span style="background-color:${bgColor};">${content}</span>`;
+            document.getElementById('preview').innerHTML += text;
+        }
+
+        function addImage() {
+            const content = document.getElementById('content').value;
+            const image = `<img src="${content}" alt="Image" />`;
+            document.getElementById('preview').innerHTML += image;
+        }
+
+        function addHeading() {
+            const content = document.getElementById('content').value;
+            const bgColor = document.getElementById('bgColorPicker').value;
+            const heading = `<h2 style="background-color:${bgColor};">${content}</h2>`;
+            document.getElementById('preview').innerHTML += heading;
+        }
+
+        // Handle navigation
+        let currentPage = 1;
+
+        function previousPage() {
+            currentPage -= 1;
+            updateNavigation();
+        }
+
+        function nextPage() {
+            currentPage += 1;
+            updateNavigation();
+        }
+
+        function updateNavigation() {
+            // Update the UI based on the current page
+            // You can add your own logic here
+        }
+
+        // Function to generate HTML content
+        function generateHTML() {
+            // Send an AJAX request to the server
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/generate_html', true);
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Update the live preview with the generated HTML content
+                    document.getElementById('preview').innerHTML = xhr.responseText;
+                }
+            };
+
+            // Send the request (content_items can be updated as needed)
+            xhr.send(JSON.stringify(content_items));
+        }
+    </script>
+</body>
+</html>

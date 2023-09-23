@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.editor {
+    margin-top: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+#bgColorPicker {
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.preview {
+    margin-top: 20px;
+    border: 1px solid #333;
+    padding: 10px;
+    min-height: 100px;
+    background-color: #f0f0f0;
+}
